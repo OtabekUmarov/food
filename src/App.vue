@@ -14,7 +14,8 @@ export default {
     Sidebar
   },
   created() {
-    this.$store.dispatch('getDishes')
+    this.$store.dispatch('getDishes'),
+    this.$store.dispatch('getOrders')
   }
 }
 </script>
@@ -43,14 +44,28 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+button {
+  cursor: pointer;
+}
 .row {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 .col-4 {
-  width: 33%;
-  max-width: 33%;
-  flex-basis: 33%;
+  width: 33.33%;
+  max-width: 33.33%;
+  flex-basis: 33.33%;
+}
+.col-10 {
+  width: 83.33%;
+  max-width: 83.33%;
+  flex-basis: 83.33%;
+}
+.col-2 {
+  width: 16.66%;
+  max-width: 16.66%;
+  flex-basis: 16.66%;
 }
 .app {
   font-family: 'b-r', sans-serif;

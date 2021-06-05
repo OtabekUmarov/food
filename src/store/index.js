@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     search: '',
-    dishes: []
+    dishes: [],
+    orders: []
   },
   getters: {
     getSearch(state) {
@@ -19,12 +20,24 @@ export default new Vuex.Store({
       return state.search
     },
     dishess(state){
+      // return state.dishes.filter(l => {
+      //   return l.title.toLowerCase().indexOf(state.search.toLowerCase()) !== -1
+      // })
       return state.dishes
+    },
+    orders(state){
+      return state.orders
     }
   },
   mutations: {
     dishesAll(state,payload){
       state.dishes = payload
+    },
+    order(state, payload){
+      state.orders.push(payload)
+    },
+    getOrder(state, payload){
+      state.orders = payload
     }
   },
   actions: {
@@ -32,7 +45,17 @@ export default new Vuex.Store({
       axios.get('http://localhost:3000/dishes').then(response => {
         context.commit('dishesAll', response.data)
       })
-    }
+    },
+    orders(context,order){
+      axios.post('http://localhost:3000/orders',order).then(response => {
+        context.commit('order',response.data)
+      })
+    },
+    getOrders(context){
+      axios.get('http://localhost:3000/orders').then(response => {
+        context.commit('getOrder',response.data)
+      })
+    },
   },
   modules: {
   }
