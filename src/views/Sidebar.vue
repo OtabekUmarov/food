@@ -127,9 +127,9 @@
     content: "";
     position: absolute;
     top: 0px;
-    right: -7px;
+    right: -9px;
     display: inline-block;
-    width: 7px;
+    width: 10px;
     height: 100%;
     transition: 0.3s;
 

@@ -1,7 +1,7 @@
 {
   "dishes": [
     {
-      "img": "img1.png",
+      "img": "img1",
       "title": "Spicy seasoned seafood noodles",
       "narx": "2.29",
       "bowl": "20 Bowls available",
@@ -59,25 +59,11 @@
   ],
   "orders": [
     {
-      "img": "img3",
-      "title": "Beef dumpling in hot and sour soup",
+      "img": "img1",
+      "title": "Spicy seasoned seafood noodles",
       "narx": "2.29",
-      "bowl": "16 Bowls available",
-      "id": "3"
-    },
-    {
-      "img": "img2",
-      "title": "Salted Pasta with mushroom sauce",
-      "narx": "2.69",
-      "bowl": "11 Bowls available",
-      "id": "2"
-    },
-    {
-      "img": "img6",
-      "title": "Spicy instant noodle with special omelette",
-      "narx": "3.59",
-      "bowl": "17 Bowls available",
-      "id": "6"
+      "bowl": "20 Bowls available",
+      "id": "1"
     },
     {
       "img": "img5",
@@ -85,13 +71,76 @@
       "narx": "3.49",
       "bowl": "15 Bowls available",
       "id": "5"
+    }
+  ],
+  "report": [
+    {
+      "img": "avatar1",
+      "name": "Eren Jaegar",
+      "menu": "Spicy seasoned seafood noodles ",
+      "total": "125",
+      "status": "completed",
+      "id": "1"
     },
     {
-      "img": "img4",
-      "title": "Healthy noodle with spinach leaf",
-      "narx": "3.29",
-      "bowl": "22 Bowls available",
+      "img": "avatar2",
+      "name": "Reiner Braunn",
+      "menu": "Salted Pasta with mushroom sauce ",
+      "total": "145",
+      "status": "preparing",
+      "id": "2"
+    },
+    {
+      "img": "avatar3",
+      "name": "Levi Ackerman",
+      "menu": "Beef dumpling in hot and sour soup ",
+      "total": "105",
+      "status": "pending",
+      "id": "3"
+    },
+    {
+      "img": "avatar4",
+      "name": "Historia Reiss",
+      "menu": "Hot spicy fried rice with omelet",
+      "total": "45",
+      "status": "completed",
       "id": "4"
+    },
+    {
+      "img": "avatar5",
+      "name": "Hanji Zoe",
+      "menu": "Hot spicy fried rice with omelet ",
+      "total": "245",
+      "status": "completed",
+      "id": "5"
+    },
+    {
+      "img": "avatar2",
+      "name": "Armin Arlert",
+      "menu": "Hot spicy fried rice with omelet",
+      "total": "225",
+      "status": "pending",
+      "id": "6"
+    }
+  ],
+  "mostOrder": [
+    {
+      "img": "img1",
+      "title": "Spicy seasoned seafood noodles",
+      "count": 200,
+      "id": 1
+    },
+    {
+      "img": "img2",
+      "title": "Salted pasta with mushroom sauce",
+      "count": 120,
+      "id": 2
+    },
+    {
+      "img": "img3",
+      "title": "Beef dumpling in hot and sour soup",
+      "count": 100,
+      "id": 3
     }
   ]
 }

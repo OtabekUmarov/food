@@ -16,6 +16,8 @@ export default {
   created() {
     this.$store.dispatch('getDishes'),
     this.$store.dispatch('getOrders')
+    this.$store.dispatch('getReport')
+    this.$store.dispatch('getMostOrder')
   }
 }
 </script>
@@ -48,14 +50,16 @@ button {
   cursor: pointer;
 }
 .row {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-left: -12px;
+  margin-right: -12px;
 }
 .col-4 {
   width: 33.33%;
   max-width: 33.33%;
   flex-basis: 33.33%;
+  padding: 12px;
 }
 .col-10 {
   width: 83.33%;
