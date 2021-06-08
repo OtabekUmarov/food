@@ -4,73 +4,83 @@
       "img": "img1",
       "title": "Spicy seasoned seafood noodles",
       "narx": "2.29",
-      "bowl": "20 Bowls available",
+      "bowl": "20",
+      "category": "soup",
       "id": "1"
     },
     {
       "img": "img2",
       "title": "Salted Pasta with mushroom sauce",
       "narx": "2.69",
-      "bowl": "11 Bowls available",
+      "bowl": "11",
+      "category": "cold",
       "id": "2"
     },
     {
       "img": "img3",
       "title": "Beef dumpling in hot and sour soup",
       "narx": "2.29",
-      "bowl": "16 Bowls available",
+      "bowl": "16",
+      "category": "soup",
       "id": "3"
     },
     {
       "img": "img4",
       "title": "Healthy noodle with spinach leaf",
       "narx": "3.29",
-      "bowl": "22 Bowls available",
+      "bowl": "22",
+      "category": "appetizer",
       "id": "4"
     },
     {
       "img": "img5",
       "title": "Hot spicy fried rice with omelet",
       "narx": "3.49",
-      "bowl": "15 Bowls available",
+      "bowl": "15",
+      "category": "soup",
       "id": "5"
     },
     {
       "img": "img6",
       "title": "Spicy instant noodle with special omelette",
       "narx": "3.59",
-      "bowl": "17 Bowls available",
+      "bowl": "17",
+      "category": "soup",
       "id": "6"
     },
     {
       "img": "img7",
       "title": "Hot spicy fried rice with omelet",
       "narx": "3.49",
-      "bowl": "15 Bowls available",
+      "bowl": "15",
+      "category": "cold",
       "id": "7"
     },
     {
       "img": "img8",
       "title": "Hot spicy fried rice with omelet",
       "narx": "3.49",
-      "bowl": "15 Bowls available",
+      "bowl": "15",
+      "category": "soup",
       "id": "8"
     }
   ],
   "orders": [
     {
-      "img": "img1",
-      "title": "Spicy seasoned seafood noodles",
+      "img": "img3",
+      "title": "Beef dumpling in hot and sour soup",
       "narx": "2.29",
-      "bowl": "20 Bowls available",
-      "id": "1"
+      "bowl": "16",
+      "category": "soup",
+      "id": "3"
     },
     {
-      "img": "img5",
-      "title": "Hot spicy fried rice with omelet",
-      "narx": "3.49",
-      "bowl": "15 Bowls available",
-      "id": "5"
+      "img": "img2",
+      "title": "Salted Pasta with mushroom sauce",
+      "narx": "2.69",
+      "bowl": "11",
+      "category": "cold",
+      "id": "2"
     }
   ],
   "report": [

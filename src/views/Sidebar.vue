@@ -149,15 +149,15 @@
     margin: 10px 0;
   }
   .logo svg {
-    fill: #C18361
+    fill: #443e3b
   }
 
   .nav a.active .one  {
     background-color: var(--bg);
   }
-   .nav a.active .one:after {
+  .nav a.active .one:after {
     background-color: var(--bg);
-   }
+  }
   .nav a.active .two {
     background-color: var(--primary);
   }

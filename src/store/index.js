@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    search: '',
+    search: '0',
+    filter: '',
     dishes: [],
     orders: [],
     reports: [],
@@ -17,8 +18,8 @@ export default new Vuex.Store({
   getters: {
     total(state) {
       let sum = 0
-      state.orders.forEach(o => {
-        sum += parseInt(o.narx.split('.').join(""))
+      state.orders.forEach(s => {
+        sum += parseFloat(s.narx)
       })
       return sum
     },
@@ -27,14 +28,28 @@ export default new Vuex.Store({
         state.search = s
       }  
     },
+    getFilter(state) {
+      return s=>{
+        state.filter = s
+      }  
+    },
     search(state){
       return state.search
     },
     dishess(state){
       return state.dishes.filter(l => {
         return l.title.toLowerCase().indexOf(state.search.toLowerCase()) !== -1
+                // && l.category.indexOf(state.filter) !==-1
       })
       // return state.dishes
+    },
+    categoryDishess(state){
+      return state.dishes.filter(l => {
+        if(state.filter == 'hot')
+          return l
+        else
+          return l.category.indexOf(state.filter) !==-1
+      })
     },
     report(state){
       return state.reports

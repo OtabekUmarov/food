@@ -148,6 +148,7 @@
 </template>
 
 <script>
+
 export default {
   computed: {
     report(){
@@ -206,7 +207,7 @@ export default {
 .most-ordered .dish-count .item{
   display: flex;
   color: #E0E6E9;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .most-ordered .dish-count .img {
   width: 56px;
@@ -223,8 +224,14 @@ export default {
 .most-ordered .dish-count .item .count {
   font-size: 12px;
 }
+.most-ordered .dish-count {
+  position: relative;
+}
 .most-ordered .view {
   margin-top: 30px;
+  position: absolute; 
+  bottom: -50px;
+  width: 100%;
 }
 .most-ordered .view button {
   width: 100%;
@@ -233,7 +240,7 @@ export default {
   border-radius: 8px;
   color: #EA7C69;
   font-size: 14px;
-  background-color: unset;
+  background-color: var(--dark);
   transition: 0.3s;
 }
 .most-ordered .view button:hover {
@@ -307,36 +314,7 @@ export default {
   font-size: 14px;
   color: #ABBBC2;
 }
-.report {
-  padding: 24px;
-  background-color: var(--dark);
-  border-radius: 8px;
-}
-.report-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.report-top .left {
-  font-size: 20px;
-  font-family: 'b-m',serif;
-}
-.report-top .right button {
-  padding: 14px;
-  background-color: unset;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  color: #fff;
-  transition: 0.3s;
-  display: flex;
-  align-items: start;
-}
-.report-top .right button svg {
-  margin-right: 10px;
-}
-.report-top .right button:hover {
-  background-color: var(--primary);
-}
+
 .table {
   width: 100%;
   margin-top: 12px;
