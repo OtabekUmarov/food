@@ -19,7 +19,8 @@ export default new Vuex.Store({
     total(state) {
       let sum = 0
       state.orders.forEach(s => {
-        sum += parseFloat(s.narx)
+        // sum += parseFloat(s.price)
+        sum += s.price*1
       })
       return sum
     },
@@ -50,6 +51,7 @@ export default new Vuex.Store({
         else
           return l.category.indexOf(state.filter) !==-1
       })
+      // return state.dishes
     },
     report(state){
       return state.reports
@@ -96,6 +98,12 @@ export default new Vuex.Store({
     dishesAll(state,payload){
       state.dishes = payload
     },
+    newDish(state, payload){
+      state.dishes.push(payload)
+    },
+    saveDish(state, payload){
+      state.dishes = payload
+    },
     mostOrder(state,payload){
       state.mostOrder = payload
     },
@@ -116,6 +124,16 @@ export default new Vuex.Store({
     getDishes(context){
       axios.get('http://localhost:3000/dishes').then(response => {
         context.commit('dishesAll', response.data)
+      })
+    },
+    newsDish(context, news){
+      axios.post('http://localhost:3000/dishes',news).then(response => {
+        context.commit('newDish', response.data)
+      })
+    },
+    saveDish(context, save){
+      axios.put('http://localhost:3000/dishes/'+save.id,save).then(response => {
+        context.commit('saveDish', response.data)
       })
     },
     getMostOrder(context){

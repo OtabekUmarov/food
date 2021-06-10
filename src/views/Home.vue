@@ -16,8 +16,8 @@
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>
             <input type="text" tabindex="1" @input="searchInp()" id="search" v-model="search" placeholder="Search for food, coffe, etc..">
+            <span class="slash">/</span>
             <div class="search-dish">
-              <!-- {{dishes}} -->
               <div class="item" @click="add(d)" v-for="d of dishes" :key="d.id">
                 <div class="img">
                   <img :src="require(`../assets/img/${d.img}.png`)" alt="">
@@ -25,7 +25,7 @@
                 <div class="search-title">
                   {{d.title}}
                 </div>
-                <div class="narx">$ {{d.narx}}</div>
+                <div class="price">$ {{d.price}}</div>
               </div>
             </div>
           </div>
@@ -54,14 +54,14 @@
         </div>
         <div class="dishes">
           <div class="row">
-            <div class="col-4" v-for="dishe of categoryDishes" :key="dishe.id">
+            <div class="col-4 col-md-6" v-for="dishe of categoryDishes" :key="dishe.id">
               <div class="dish">
                   <div class="img">
                     <img :src="require(`../assets/img/`+dishe.img+`.png`)" alt="">
                   </div>
                   <div class="title">{{dishe.title}}</div>
                   <div class="bottom">
-                    <div class="narx">$ {{dishe.narx}}</div>
+                    <div class="price">$ {{dishe.price}}</div>
                     <div class="bowl">{{dishe.bowl}}  Bowls available</div>
                   </div>
                   <div class="btn-dish">
@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="order">
-          <div class="row" v-for="order of getOrders" :key="order.id" style="margin-bottom:24px;">
+          <div class="row" v-for="order of getOrders" :key="order.id">
             <div class="col-10 jcsb" style="margin-bottom:10px;">
               <div class="order-name">
                 <div class="img">
@@ -103,13 +103,13 @@
                 </div>
                 <div class="title">
                   <span class="text">{{order.title}}</span>
-                  <span class="narx">$ {{order.narx}}</span>
+                  <span class="price">$ {{order.price}}</span>
                 </div>
               </div>
               <div class="order-count">2</div>
             </div>
             <div class="col-2">
-              <div class="order-sum">${{order.narx}}</div>
+              <div class="order-sum">${{order.price}}</div>
             </div>
             <div class="col-10">
               <input class="order-note" type="text" placeholder="Order Note...">
@@ -161,13 +161,13 @@
                 </div>
                 <div class="title">
                   <span class="text">{{order.title}}</span>
-                  <span class="narx">$ {{order.narx}}</span>
+                  <span class="price">$ {{order.price}}</span>
                 </div>
               </div>
               <div class="order-count">2</div>
             </div>
             <div class="col-2">
-              <div class="order-sum">${{order.narx}}</div>
+              <div class="order-sum">${{order.price}}</div>
             </div>
             <div class="col-10">
               <input class="order-note" type="text" placeholder="Order Note...">
@@ -322,9 +322,6 @@ export default {
     subTotal(){
       return this.$store.getters.total
     },
-    // getSearch(){
-    //   return this.$store.getters.search
-    // },
     dishes(){
       return this.$store.getters.dishess
     },
@@ -337,529 +334,15 @@ export default {
 
   },
   created() {
-    // window.addEventListener('keypress', (e) => {
-    //   if (e.key == '/') {
-    //     document.getElementById('search').focus()
-    //   }
-    // });
+    window.addEventListener('keypress', (e) => {
+      if (e.key == '/') {
+        document.getElementById('search').focus()
+        document.querySelector('.slash').style.display = 'none'
+      }
+    });
+    window.addEventListener('click', () => {
+        document.querySelector('.slash').style.display = 'flex'
+    });
   }
 }
 </script>
-<style>
-.container {
-  width: calc(100% - 350px);
-}
-.row {
-  margin-left: -12px;
-  margin-right: -12px;
-}
-.col-4 {
-  padding: 12px;
-}
-.home-wrap.dark::after {
-  content: "";
-  display: inline-block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 2;
-}
-.back {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-.back:hover{
-  background-color: var(--primary);
-}
-.home-wrap {
-  width: calc(100%-105px);
-}
-.confirmation {
-  position: fixed;
-  display: flex;
-  top: 0;
-  right: -100%;
-  z-index: 3;
-  background-color: var(--dark);
-  height: 100vh;
-  transition: 0.3s;
-}
-.confirmation.show {
-  right: 0;
-}
-.confirmation .lefts, .confirmation .rights {
-  width: 400px;
-  height: 100%;
-  overflow: auto;
-  padding: 24px;
-  flex-basis: 400px;
-  padding-top: 60px;
-}
-.confirmation .rights {
-  border-left: 1px solid #393C49;
-}
-.confirmation .lefts .top {
-  padding-bottom: 24px;
-  display: flex;  
-  justify-content: space-between;
-  align-items: center;
-  border-bottom:  1px solid #393C49;;
-}
-.confirmation .rights .top {
-  padding-bottom: 24px;
-  border-bottom:  1px solid #393C49;;
-} 
-.confirmation .lefts .top button {
-  background-color: unset;
-  border: 1px solid var(--primary);
-  padding: 14px;
-  border-radius: 8px;
-  color: #fff;
-  transition: 0.3s;
-}
-.confirmation .lefts .top button svg {
-  transition: 0.3s;
-}
-.confirmation .lefts .top button:hover {
-  background-color: var(--primary);
-}
-.confirmation .lefts .top button:hover svg path{
-  stroke: #fff;
-}
-
-.confirmation .confir__title {
-  font-size: 28px;
-  font-family: 'b-b',serif;
-  margin-bottom: 8px;
-}
-.confirmation .confir__info {
-  color: #ABBBC2;
-  font-size: 16px;
-}
-.confirmation .order {
-  border-top: 0;
-  margin-top: 0;
-  height: 60vh;
-}
-.confirmation .method {
-  font-size: 20px;
-  font-family: 'b-b',serif;
-  margin-top: 24px;
-  margin-bottom: 16px;
-}
-.confirmation .card-btn{
-  display: flex;
-}
-.confirmation .card-btn button {
-  width: 100px;
-  padding: 10px;
-  background-color: unset;
-  display: flex;
-  font-size: 12px;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  color: #fff;
-  margin-right: 8px;
-  transition: 0.3s;
-}
-.confirmation .card-btn button svg {
-  margin-bottom: 2px;
-}
-
-.confirmation .card-btn button:hover,
-.confirmation .card-btn button.active  {
-  background-color: var(--bg);
-  border: 1px solid #ABBBC2;
-}
-.confir__input label {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.confir__input select {
-  width: 100%;
-}
-.search-dish {
-  position: absolute;
-  z-index: 5;
-  background-color: var(--dark);
-  border-radius: 8px;
-  max-height: 400px;
-  overflow: auto;
-
-}
-.search-dish .item {
-  cursor: pointer;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.search-dish .item .img {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 5px;
-}
-.search-dish .item .img img {
-  width: 100%;
-}
-.search-dish .item .search-title {
-  font-size: 12px;
-  width: 60%;
-  flex-basis: 60%;
-}
-.search-dish .item .narx {
-  font-size: 14px;
-}
-.orders {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 350px;
-  padding: 24px;
-  background-color: var(--dark);
-  height: 100vh;
-  /* overflow: auto; */
-}
-.home .head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.home .head .title{
-  font-size: 28px;
-  font-family: 'b-b',serif;
-}
-.home .head .sana {
-  font-size: 16px;
-  color: #E0E6E9;
-}
-.home .head input {
-  outline: unset;
-  background-color: #393C49;
-  color: #ABBBC2;
-  padding: 14px 14px 14px 42px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  transition: 0.3s;
-  width: 100%;
-}
-.home .head input:focus {
-  border:1px solid var(--primary); 
-}
-.home .head .right {
-  position: relative;
-  width: 300px;
-}
-.home .head .right svg{
-  position: absolute;
-  top: 13px;
-  left: 12px;
-}
-.btns {
-  display: flex;
-  align-items: center;
-  padding: 13px 0;
-  margin-top: 25px;
-  border-bottom: 1px solid #393C49;
-}
-.btns .filter-btn {
-  background-color: unset;
-  border: 0;
-  margin-right: 32px;
-  color: #fff;
-  transition: 0.3s;
-  position: relative;
-}
-.btns .filter-btn.active, .btns .filter-btn:hover {
-  color: var(--primary);
-}
-.btns .filter-btn:after {
-  content: "";
-  bottom: -13px;
-  position: absolute;
-  height: 2px;
-  width: 0;
-  left: 0;
-  background-color: var(--primary);
-  transition: 0.3s;
-}
-.btns .filter-btn.active:after, .btns .filter-btn:hover:after {
-  width: 60%;
-}
-.home .menu {
-  margin: 25px 0;
-}
-.menu-head {
-  display: flex;
-  justify-content: space-between;
-}
-.menu-head select, .confir__input select {
-  background-color: var(--dark);
-  color: #fff;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  outline: none;
-  padding: 14px;
-  transition: 0.3s;
-}
-.menu-head select:hover {
-  background-color: var(--primary);
-}
-.home .menu .titles {
-  font-size: 20px;
-  font-family: 'b-b',serif;
-}
-.dish {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  /* padding: 24px; */
-  padding-top: 0;
-  z-index: 1;
-  font-size: 14px;
-}
-.dish:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 100%;
-  height: 85%;
-  z-index: -1;
-  background-color: var(--dark);
-  border-radius: 16px;
-  transition: 0.3s;
-}
-.dish .img {
-  width: 130px;
-  height: 130px;
-  margin: auto;
-  margin-bottom: 16px;
-  transition: 0.3s;
-}
-.dish .img img {
-  width: 100%;
-}
-.dish .title {
-  max-width: 144px;
-  margin: auto;
-  font-family: 'b-m',serif;
-  line-height: 18px;
-  margin-bottom: 8px;
-}
-
-.dish .bottom  {
-  margin: auto;
-}
-
-.btn-dish button{
-  padding: 16px 0;
-  width: 100%;
-  background: #EA7C6942;
-  color: var(--primary);
-  border: unset;
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  opacity: 0;
-  transition: 0.3s;
-}
-.dish .bottom .bowl {
-  color: #ABBBC2;
-  margin-top: 5px;
-}
-.dish:hover:after {
-  height: 100%;
-  transform: scaleY(1.13) scaleX(1.04);
-}
-.dish:hover .img {
-  transform: scale(1.1);
-}
-.dish:hover .btn-dish button {
-  height: auto;
-  transform: scaleY(1.13) scaleX(1.04) translateY(13px);
-  opacity: 1;
-}
-.orders .top {
-  font-family: 'b-b',serif;
-  font-size: 20px;
-  line-height: 28px;
-}
-.orders-btns {
-  margin: 24px 0;
-}
-.orders-btns button{
-  background-color: unset;
-  color: #EA7C69;
-  padding: 7px 12px;
-  margin-right: 8px;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  transition: 0.3s;
-  font-family: 'b-m',serif;
-}
-.orders-btns button.active, .orders-btns button:hover {
-  background-color: var(--primary);
-  color: #fff;
-}
-.orders-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.orders-item button {
-  background-color: unset;
-  border: 0;
-  font-family: 'b-b', serif;
-  color: #fff;
-}
-.jcsb {
-  display: flex;
-  justify-content: space-between;
-}
-.order-name .img {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-}
-.order-name .title {
-  display: flex;
-  flex-direction: column;
-}
-.order-name .title .text{
-  display: inline-block;
-  width: 120px;
-  height: 18px;
-  overflow: hidden;
-  font-size: 14px;
-  line-height: 18px;
-  position: relative;
-}
-/* .order-name .title .text:after {
-  content: "...";
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-} */
-.order-name .title .narx {
-  color: #ABBBC2;
-  font-size: 12px;
-}
-.order {
-  margin-top: 24px;
-  padding-top: 24px;
-  height: 48vh;
-  overflow: auto;
-  border-top: 1px solid #393C49;
-}
-.order .row, .orders .row{
-  width: 100%;
-  margin: 0;
-  padding-right: 15px;
-
-}
-
-.order-name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.order-count {
-  padding: 14px 14px 12px;
-  background-color: var(--bg);
-  border: 1px solid #393C49;
-  border-radius: 8px;
-}
-.order-name .img img {
-  width: 100%;
-}
-.order .row .col-2 {
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-}
-.order-sum {
-  font-size: 16px;
-  transform: translateY(-4px);
-}
-.confir__input input, 
-.order-note {
-  outline: none;
-  background-color: var(--bg);
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  color: #E0E6E9;
-  transition: 0.3s;
-}
-.confir__input input:focus, 
-.order-note:focus {
-  border:1px solid var(--primary); 
-}
-.order-delete {
-  background-color: unset;
-  border: 1px solid #EA7C69;
-  border-radius: 8px;
-  height: 100%;
-  padding: 0 14px;
-  transition: 0.3s;
-}
-.order-delete:hover {
-  background-color: #EA7C69;
-}
-.order-delete:hover svg path {
-  fill: #fff;
-}
-.discount, .total {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 16px;
-  margin-top: 24px;
-}
-.discount .left, .total .left {
-  font-size: 14px;
-  color: #ABBBC2;
-}
-.payment  button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 14px 0;
-  border: 1px solid #EA7C69;
-  filter: drop-shadow(0px 8px 24px rgba(146, 136, 224, 0.3));
-  border-radius: 8px;
-  background-color: unset;
-  transition: 0.3s;
-  color: #EA7C69;
-  font-size: 16px;
-  font-family: 'b-b',serif;
-}
-.payment button:hover {
-  background-color: #EA7C69;
-  color: #FAFAFA;
-}
-</style>

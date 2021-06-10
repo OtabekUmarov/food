@@ -1,0 +1,282 @@
+@media (max-width:1024px) {
+  .col-3, .col-4, .col-9 {
+    padding: 10px;
+  }
+  .col-md-6 {
+    width: 50%;
+    flex-basis: 50%;
+    min-width: 50%;
+  }
+  .settings .col-3 {
+    width: 30%;
+    flex-basis: 30%;
+    max-width: 30%;
+  }
+  .settings .col-9 {
+    width: 70%;
+    flex-basis: 70%;
+    max-width: 70%;
+  }
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .container {
+    width: calc(100% - 320px);
+  }
+  .orders, .most-ordered {
+    width: 320px;
+  }
+  .nav {
+    width: 95px;
+  }
+  .nav a .one {
+    height: 70px;
+    width: 78px;
+  }
+  .btns .filter-btn {
+    margin-right: 9px;
+  }
+  .nav .two {
+    width: 45px;
+    height: 45px;
+  }
+
+  .views {
+    margin-left: 95px;
+    padding: 20px;
+  }
+
+  .home .head {
+    margin-bottom: 10px;
+  }
+  .home .head .right {
+    width: 250px;
+  }
+  .home .head .title, .title, .settings .titles {
+    font-size: 20px;
+  }
+  .home .head .data {
+    font-size: 14px;
+  }
+  .order  {
+    height: 42vh;
+  }
+  .dish .img {
+    width: 100px;
+    height: 100px;
+  }
+  .home .menu {
+    margin: 0;
+    margin-top: 15px;
+  }
+  .sum {
+    font-size: 24px;
+  }
+  .dashboard .select {
+    padding: 10px;
+  }
+  .table .item:nth-child(2) {
+    width: 40%;
+    flex-basis: 40%;
+  }
+  .table .item:nth-child(3) {
+    width: 20%;
+    flex-basis: 20%;
+    
+  }
+  .table .item:last-child {
+    width: 25%;
+    flex-basis: 25%;
+  }
+  .discount, .total {
+    margin-top: 15px;
+  }
+  .avatar  {
+    margin-right: 8px;
+  }
+  .setting {
+    padding: 10px;
+  }
+  .btn-dish button {
+    padding: 12px 0;
+  }
+  .setting-btns {
+    padding: 0 20px;  
+    height: 65px;
+  }
+  .settings .dishes {
+    height: calc(100% - 190px);
+  }
+}
+@media (max-width:768px) {
+
+  .col-3, .col-4, .col-9 {
+    padding: 8px;
+  }
+  .col-10 {
+    flex-basis: 75%;
+    width: 75%;
+  }
+  .col-2 {
+    flex-basis: 25%;
+    width: 25%;
+  }
+  .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .nav {
+    width: 75px;
+  }
+  .nav a .one {
+    height: 60px;
+    width: 60px;
+  }
+  .nav .two {
+    width: 40px;
+    height: 40px;
+  }
+  .home .head .slash {
+    width: 20px;
+    height: 20px;
+  }
+
+  .views {
+    margin-left: 75px;
+    padding: 16px;
+  }
+  .container {
+    width: calc(100% - 300px);
+  }
+  .orders, .most-ordered {
+    width: 300px;
+  }
+  .home .head .title, .title, .settings .titles {
+    font-size: 18px;
+  }
+  .home .head .data {
+    font-size: 12px;
+  }
+  .home .head .right svg  {
+    width: 15px;
+    height: 15px;
+  }
+  .home .head input {
+    padding: 12px 12px 12px 32px;
+  }
+  .home .head .right {
+    width: 200px;
+  }
+  .btns {
+    overflow: auto;
+  }
+  .btns .filter-btn {
+    margin-right: 11px;
+  }
+  .dish .img {
+    width: 80px;
+    height: 80px;
+  }
+  .menu-head select, .confir__input select {
+    padding: 12px;
+  }
+  .orders {
+    padding: 16px;
+  }
+  .orders .top {
+    font-size: 18px;
+  }
+  .orders-btns {
+    margin: 12px 0;
+  }
+  .order {
+    margin-top: 12px;
+    padding-top: 12px;
+    height: calc(100% - 240px);
+  }
+  .order-name .title .text {
+    width: 100px;
+    font-size: 12px;
+  }
+  .confir__input input, .order-note {
+    padding: 10px;
+  }
+  .order .row, .orders .row {
+    padding-right: 0;
+  }
+  .order .row {
+    margin-bottom: 12px;
+  }
+  .payment button {
+    margin-top: 12px;
+    padding: 12px 0px;
+  }
+  .dish:hover .btn-dish button {
+    transform: scaleY(1.06) scaleX(1.04) translateY(13px);
+  }
+  .dish .title {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .dashboard .head {
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+  }
+  .dashboard .box {
+    padding: 16px;
+  }
+  .top .top-svg {
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+  }
+  .top .top-svg svg {
+    width: 16px;
+    height: 16px;
+  }
+  .dash .container {
+    width: 100%;
+  }
+  .most-ordered {
+    position: fixed;
+    right: -100%;
+    background-color: var(--dark);
+    transition: 0.3s;
+    z-index: 3;
+  }
+  .most-ordered.show {
+    right: 0;
+  }
+  .most-modal {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .most-modal button {
+    padding: 10px;
+    background-color: unset;
+    color: #fff;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+  }
+  .most-modal button:hover {
+    background-color: var(--primary);
+  }
+
+  .most-ordered .back {
+    display: flex;
+    top: 10px;
+    left: 10px;
+  }
+  .setting {
+    padding: 8px;
+  }
+  .setting-btns button {
+    width: 33%;
+    flex-basis: 33%;
+  }
+}

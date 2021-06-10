@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="dash" :class='{dark:modal}'>
     <div class="container dashboard">
+      
       <div class="head">
           <div class="left">
             <div class="title">
@@ -9,6 +10,9 @@
             <div class="data">
               {{getWeek}}, {{ new Date().getDate() }}  {{getMonth}} {{ new Date().getFullYear() }}
             </div>
+          </div>
+          <div class="most-modal" @click="modal = !modal">
+            <button>Most ordered</button>
           </div>
       </div>
       <div class="counter">
@@ -105,7 +109,12 @@
           </div>
         </div>
       </div>
-      <div class="most-ordered">
+      <div class="most-ordered" :class='{show:modal}'>
+        <span class="back" @click="modal=!modal">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.5 10.5L1 6M1 6L5.5 1.5M1 6L17 6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <div class="ordered-top">
           <div class="head">
             <div class="name">Most Ordered</div>
@@ -116,7 +125,7 @@
               <option value="Last month">Last month</option>
             </select>
           </div>
-          <div class="dish-count">
+          <div class="dish-count" :class='{all:view}'>
             <div class="item" v-for="most of mostOrder" :key="most.id">
               <div class="img">
                 <img :src="require(`../assets/img/${most.img}.png`)" alt="">
@@ -125,11 +134,15 @@
                 <div class="titl">{{most.title}}</div>
                 <div class="count">{{most.count}} dishes ordered</div>
               </div>
+              
             </div>
-            <div class="view">
-              <button>View All</button>
+           <div class="viewClose">
+              <button v-show="view" @click="view = !view">Close</button>
             </div>
           </div>
+            <div class="view">
+              <button v-show="!view" @click="view = !view">View All</button>
+            </div>
         </div>
         <div class="ordered-bottom">
           <div class="head">
@@ -141,6 +154,9 @@
               <option value="Last month">Last month</option>
             </select>
           </div>
+          <div >
+            <apexchart type="radialBar" height="200px" :options="chartOptions" :series="series"></apexchart>
+          </div>
         </div>
       </div>
     </div>
@@ -148,8 +164,40 @@
 </template>
 
 <script>
+import VueApexCharts from 'vue-apexcharts'
 
 export default {
+  data: ()=> ({
+    modal: false,
+    view: false,
+      series: [44, 55, 67],
+          chartOptions: {
+            chart: {
+              height: 100,
+              type: 'radialBar',
+            },
+            plotOptions: {
+              radialBar: {
+                dataLabels: {
+                  name: {
+                    fontSize: '16px',
+                  },
+                  value: {
+                    fontSize: '14px',
+                  },
+                  total: {
+                    show: true,
+                    label: 'Month',
+                    formatter: function () {
+                      return '67%'
+                    }
+                  }
+                }
+              }
+            },
+            labels: ['Today', 'Yesterday', 'Month'],
+          },
+  }),
   computed: {
     report(){
       return this.$store.getters.report
@@ -163,225 +211,9 @@ export default {
     getMonth(){
       return this.$store.getters.getMonth
     }
+  },
+  components: {
+    apexchart: VueApexCharts
   }
 }
 </script>
-
-<style scoped>
-.head {
-  padding-bottom: 24px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #393C49;
-}
-.most-ordered {
-  position: fixed;
-  display: inline-block;
-  top: 0;
-  right: 0;
-  width: 350px;
-  height: 100vh;
-  background-color: var(--bg);
-  padding: 24px;
-  padding-top: 18px;
-  padding-left: 0;
-}
-.most-ordered .ordered-top {
-  padding: 12px 24px;
-  background-color: var(--dark);
-  border-radius: 8px;
-  height: 55vh;
-  margin-bottom: 24px;
-}
-.most-ordered .ordered-bottom {
-  padding: 12px 24px;
-  background-color: var(--dark);
-  border-radius: 8px;
-  height: 38vh;
-}
-.most-ordered .head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.most-ordered .dish-count .item{
-  display: flex;
-  color: #E0E6E9;
-  margin-top: 10px;
-}
-.most-ordered .dish-count .img {
-  width: 56px;
-  height: 56px;
-  margin-right: 16px;
-}
-.most-ordered .dish-count .img img {
-  width: 100%;
-}
-.most-ordered .dish-count .item .titl {
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-.most-ordered .dish-count .item .count {
-  font-size: 12px;
-}
-.most-ordered .dish-count {
-  position: relative;
-}
-.most-ordered .view {
-  margin-top: 30px;
-  position: absolute; 
-  bottom: -50px;
-  width: 100%;
-}
-.most-ordered .view button {
-  width: 100%;
-  padding: 12px 0;
-  border: 1px solid #EA7C69;
-  border-radius: 8px;
-  color: #EA7C69;
-  font-size: 14px;
-  background-color: var(--dark);
-  transition: 0.3s;
-}
-.most-ordered .view button:hover {
-  background-color: var(--primary);
-  color: #fff;
-}
-.select {
-  background-color: var(--dark);
-  color: #fff;
-  border: 1px solid #393C49;
-  border-radius: 8px;
-  outline: none;
-  padding: 14px;
-  transition: 0.3s;
-}
-.select:hover {
-  background-color: var(--primary);
-}
-.title{
-  font-size: 28px;
-  font-family: 'b-b',serif;  
-}
-.head .sana {
-  font-size: 16px;
-  color: #E0E6E9;
-}
-.box {
-  padding: 16px;
-  background-color: var(--dark);
-  border-radius: 8px;
-}
-.top {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.top .top-svg {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg);
-  margin-right: 12px;
-}
-.arrow {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(136, 224, 145, 0.24);
-  border-radius: 50%;
-}
-.foiz {
-  margin-right: 6px;
-}
-.green {
-  color: #50D1AA;
-}
-.red {
-  color: #FF7CA3;
-}
-.sum {
-  font-size: 28px;
-  font-family: 'b-b',serif;
-  margin-bottom: 8px;
-}
-.total {
-  font-size: 14px;
-  color: #ABBBC2;
-}
-
-.table {
-  width: 100%;
-  margin-top: 12px;
-}
-.table .thead, .table .tbody{
-  display: flex;
-  align-items: center;
-  position: relative;
-  font-size: 14px;
-}
-.table .thead {
-  border-bottom: 1px solid #393C49;
-  font-family: 'b-b',serif;
-  padding-bottom: 20px;
-}
-.table .tbody {
-  color: #E0E6E9;
-  padding-top: 12px;
-}
-.table .item {
-  padding: 8px 0;
-  width: 25%;
-  flex-basis: 25%;
-}
-.table .item:first-child{
-  display: flex;
-  align-items: center;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FFB572;
-  border-radius: 50%;
-  margin-right: 16px;
-}
-.table .item:nth-child(2){
-  width: 35%;
-  flex-basis: 35%;
-}
-.table .item:last-child{
-  width: 15%;
-  flex-basis: 15%;
-  text-transform: capitalize;
-  text-align: center;
-  padding: 4px 10px;
-  border-radius: 30px;
-}
-.table .item.completed, .avatar.completed {
-  background: rgba(107, 226, 190, 0.2);
-  color: #50D1AA;
-}
-.table .item.pending, .avatar.pending {
-  background:rgba(255, 181, 114, 0.2);
-  color: #FFB572;
-}
-.table .item.preparing, .avatar.preparing {
-  background: rgba(146, 144, 254, 0.2);
-  color: #9290FE;
-}
-.table .item.completed {
-  text-transform: capitalize;
-  text-align: center;
-  padding: 4px 10px;
-  background: rgba(107, 226, 190, 0.24);
-  border-radius: 30px;;
-}
-</style>

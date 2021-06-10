@@ -18,13 +18,16 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('../views/Setting/Settings.vue')
+    component: () => import('../views/Setting/Settings.vue'),
+    children: [
+      {
+        path: '/settings/:name',
+        name: 'Setting',
+        component: () => import('../views/Setting/Setting.vue')
+      }
+    ]
   },
-  {
-    path: '/setting',
-    name: 'Setting',
-    component: () => import('../views/Setting/Setting.vue')
-  }
+  
 ]
 
 const router = new VueRouter({
