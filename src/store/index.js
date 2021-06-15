@@ -18,10 +18,14 @@ export default new Vuex.Store({
   getters: {
     total(state) {
       let sum = 0
-      state.orders.forEach(s => {
-        // sum += parseFloat(s.price)
-        sum += s.price*1
+      state.dishes.forEach(d => {
+        state.orders.forEach(o => {
+          if(o.id == d.id){
+            sum += d.price*1*d.count
+          }
+        })
       })
+      sum = sum.toFixed(2)
       return sum
     },
     getSearch(state) {
@@ -53,11 +57,25 @@ export default new Vuex.Store({
       })
       // return state.dishes
     },
+    // countSum(state){
+    //   return state.orders.forEach( order => {
+    //     order.price = order.price*order.count
+    //   })
+    // },
     report(state){
       return state.reports
     },
     orders(state){
-      return state.orders
+      let arr = []
+      state.dishes.forEach(d => {
+        state.orders.forEach(o => {
+          if(o.id == d.id){
+            d.count = o.count
+            arr.push(d)
+          }
+        })
+      })
+      return arr
     },
     mostOrder(state){
       return state.mostOrder
@@ -116,9 +134,15 @@ export default new Vuex.Store({
     getOrder(state, payload){
       state.orders = payload
     }, 
+    updateOrder(state, payload){
+      state.orders = payload
+    }, 
     removeOrder(state,payload){
       state.orders.splice(state.orders.findIndex(function(i){ return i.id === payload; }), 1);
-    }
+    },
+    removeDish(state,payload){
+      state.dishes.splice(state.dishes.findIndex(function(i){ return i.id === payload; }), 1);
+    },
   },
   actions: {
     getDishes(context){
@@ -136,6 +160,19 @@ export default new Vuex.Store({
         context.commit('saveDish', response.data)
       })
     },
+    delDish(context,del){
+      axios.delete('http://localhost:3000/dishes/'+del.id).then(response => {
+        console.log(response)
+        context.commit('removeDish',del.id)
+      })
+    },
+    // writeOrders(context,order){
+    //   let w = 
+    //   axios.delete('http://localhost:3000/dishes/'+del.id).then(response => {
+    //     console.log(response)
+    //     context.commit('removeDish',del.id)
+    //   })
+    // },
     getMostOrder(context){
       axios.get('http://localhost:3000/mostOrder').then(response => {
         context.commit('mostOrder', response.data)
@@ -147,8 +184,22 @@ export default new Vuex.Store({
       })
     },
     orders(context,order){
-      axios.post('http://localhost:3000/orders',order).then(response => {
-        context.commit('order',response.data)
+      // axios.get('http://localhost:3000/orders').then(response => {
+      //   response.data.find(i => {
+      //       if(i.id == order.id){
+      //         console.log('salom');
+      //         order.count++
+      //         axios.put('http://localhost:3000/orders/'+order.id,order).then(response => {
+      //           context.commit('updateOrder',response.data)
+      //         })
+      //       }
+      //         else {
+                axios.post('http://localhost:3000/orders',order).then(response => {
+                  context.commit('order',response.data)
+      //           })
+      //         }      
+      //   })
+        // context.commit('order',response.data)
       })
     },
     getOrders(context){

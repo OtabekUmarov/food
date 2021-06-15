@@ -36,6 +36,7 @@
               </div>
             </div>
           </router-link>
+          <!-- <router-link active-class="active" :to="{name: 'Setting',params: {name:'management'}}"> -->
           <router-link active-class="active" :to="{name: 'Setting',params: {name:'management'}}">
             <div class="setting">
               <div class="setting-svg">

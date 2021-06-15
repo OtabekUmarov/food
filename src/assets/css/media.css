@@ -2,20 +2,11 @@
   .col-3, .col-4, .col-9 {
     padding: 10px;
   }
-  .col-md-6 {
-    width: 50%;
-    flex-basis: 50%;
-    min-width: 50%;
-  }
-  .settings .col-3 {
-    width: 30%;
-    flex-basis: 30%;
-    max-width: 30%;
-  }
-  .settings .col-9 {
-    width: 70%;
-    flex-basis: 70%;
-    max-width: 70%;
+
+  .col-md-4 {
+    width: 33.33%;
+    flex-basis: 33.33%;
+    max-width: 33.33%;
   }
   .row {
     margin-left: -10px;
@@ -35,7 +26,7 @@
     width: 78px;
   }
   .btns .filter-btn {
-    margin-right: 9px;
+    margin-right: 22px;
   }
   .nav .two {
     width: 45px;
@@ -103,14 +94,19 @@
   }
   .setting-btns {
     padding: 0 20px;  
-    height: 65px;
+    height: 80px;
+    padding-top: 15px;
   }
   .settings .dishes {
     height: calc(100% - 190px);
   }
 }
 @media (max-width:768px) {
-
+  .col-md-6 {
+    width: 50%;
+    flex-basis: 50%;
+    min-width: 50%;
+  }
   .col-3, .col-4, .col-9 {
     padding: 8px;
   }

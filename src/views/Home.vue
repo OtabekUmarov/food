@@ -46,15 +46,15 @@
             <div class="select">
               <select>
                 <option value="" selected>Dine In</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <option value="togo">To Go</option>
+                <option value="delivery">Delivery</option>
               </select>
             </div>
           </div>
         </div>
         <div class="dishes">
           <div class="row">
-            <div class="col-4 col-md-6" v-for="dishe of categoryDishes" :key="dishe.id">
+            <div class="col-3 col-md-4  col-md-6" v-for="dishe of categoryDishes" :key="dishe.id">
               <div class="dish">
                   <div class="img">
                     <img :src="require(`../assets/img/`+dishe.img+`.png`)" alt="">
@@ -106,7 +106,7 @@
                   <span class="price">$ {{order.price}}</span>
                 </div>
               </div>
-              <div class="order-count">2</div>
+              <div class="order-count">{{order.count}}</div>
             </div>
             <div class="col-2">
               <div class="order-sum">${{order.price}}</div>
@@ -164,7 +164,7 @@
                   <span class="price">$ {{order.price}}</span>
                 </div>
               </div>
-              <div class="order-count">2</div>
+              <div class="order-count">{{order.count}}</div>
             </div>
             <div class="col-2">
               <div class="order-sum">${{order.price}}</div>
@@ -264,7 +264,7 @@
             </div>
             <div class="row">
               <div class="col-6">
-                <button class="foot-btn">Cancel</button>
+                <button class="foot-btn"  @click="modal=!modal">Cancel</button>
               </div>
               <div class="col-6">
                 <button class="foot-btn">Confirm Payment</button>
@@ -309,8 +309,25 @@ export default {
       }
     },
     add(dish){
-      this.$store.dispatch('orders',dish)
+      let newOrder = {
+        id: dish.id,
+        count: 1,
+      }
+      // newOrder.count = 1
+      // newOrder.count = 1
+      this.$store.dispatch('orders',newOrder)
     }
+    // add(dish){
+    //   console.log(this.getOrders);
+    //   dish.count = 1
+    //   this.getOrders.find(f => {
+    //     if(f.id == dish.id) {
+    //       f.count++
+    //       this.$store.dispatch('updateOrders',f)
+    //     }
+    //   })
+    //       this.$store.dispatch('orders',dish)
+    // }
   },
   computed: {
     getWeek(){
@@ -331,7 +348,6 @@ export default {
     getOrders(){
       return this.$store.getters.orders
     }
-
   },
   created() {
     window.addEventListener('keypress', (e) => {

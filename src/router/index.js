@@ -21,13 +21,12 @@ const routes = [
     component: () => import('../views/Setting/Settings.vue'),
     children: [
       {
-        path: '/settings/:name',
+        path: '/settings/setting',
         name: 'Setting',
         component: () => import('../views/Setting/Setting.vue')
       }
     ]
   },
-  
 ]
 
 const router = new VueRouter({

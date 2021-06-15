@@ -154,8 +154,33 @@
               <option value="Last month">Last month</option>
             </select>
           </div>
-          <div >
-            <apexchart type="radialBar" height="200px" :options="chartOptions" :series="series"></apexchart>
+          <div class="diagram">
+            <div>
+              <apexchart type="radialBar" height="200px" :options="chartOptions" :series="series"></apexchart>
+            </div>
+            <div>
+              <div class="item">
+                <div class="circle"></div>
+                <div class="name">
+                  <span class="title">Dine In</span>
+                  <span class="count">200 customers</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="circle green"></div>
+                <div class="name">
+                  <span class="title">To Go</span>
+                  <span class="count">122 customers</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="circle blue"></div>
+                <div class="name">
+                  <span class="title">Delivery</span>
+                  <span class="count">264 customers</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -195,7 +220,7 @@ export default {
                 }
               }
             },
-            labels: ['Today', 'Yesterday', 'Month'],
+            labels: ['Dine In', 'To Go', 'Delivery'],
           },
   }),
   computed: {

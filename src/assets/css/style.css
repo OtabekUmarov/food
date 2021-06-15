@@ -520,7 +520,7 @@ button {
   width: 25px;
   height: 25px;
   border-radius: 5px;
-  background-color: var(--dark);
+  background-color: var(--bg);
 }
 
 .home .head input:focus {
@@ -631,8 +631,8 @@ button {
 }
 
 .dish .img {
-  width: 130px;
-  height: 130px;
+  width: 60%;
+  height: 60%;
   margin: auto;
   margin-bottom: 16px;
   transition: 0.3s;
@@ -685,7 +685,7 @@ button {
 
 .dish:hover .btn-dish button {
   height: auto;
-  transform: scaleY(1.13) scaleX(1.04) translateY(13px);
+  transform: scaleY(1.13) scaleX(1.04) translateY(14.5px);
   opacity: 1;
 }
 
@@ -928,7 +928,7 @@ button {
 .most-ordered .dish-count .item {
   display: flex;
   color: #E0E6E9;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .most-ordered .dish-count .img {
@@ -963,6 +963,7 @@ button {
   background-color: var(--bg);
   overflow: auto;
   padding-bottom: 30px;
+  padding-left: 8px;
 }
 
 .viewClose {
@@ -1179,7 +1180,39 @@ button {
   border-radius: 30px;
   ;
 }
-
+.diagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.diagram .item {
+  width: 105px;
+  display: flex;
+  margin-bottom: 12px;
+}
+.diagram .item .circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(254, 176, 25, 0.85);
+  margin-right: 9px;
+}
+.diagram .item .circle.green{
+  background: rgba(0, 227, 150, 0.85);
+}
+.diagram .item .circle.blue {
+  background: rgba(0, 143, 251, 0.85);
+}
+.diagram .item .name span {
+  display: block;
+}
+.diagram .item .name .title{
+  font-size: 14px;
+}
+.diagram .item .name .count {
+  font-size: 12px;
+  color: #ABBBC2;
+}
 
 /* -----------setting----------- */
 
@@ -1334,7 +1367,7 @@ button {
   width: 100%;
   bottom: 0;
   left: 0;
-  z-index: 5;
+  z-index: 2;
   background-color: var(--dark);
 }
 
@@ -1419,7 +1452,7 @@ button {
   margin-top: 12px;
 }
 
-.settings .dish:hover:after {
+.settings .dish:after {
   height: 100%;
   transform: scaleY(1) scaleX(1);
 }
@@ -1428,7 +1461,7 @@ button {
   transform: scale(1.1);
 }
 
-.settings .dish:hover .btn-dish button {
+.settings .dish .btn-dish button {
   height: auto;
   transform: scaleY(1) scaleX(1) translateY(0);
   opacity: 1;
